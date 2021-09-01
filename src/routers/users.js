@@ -7,14 +7,15 @@ const User = require("../models/users");
 
 userRouter.post("/user/signup" ,async (req,res) =>{
 
-    const userUp = new User(req.bod)
+    const userUp = new User(req.body)
     try{
        await userUp.save()
        const token = await userUp.generateToken()
        res.status(200).send({userUp,token})
     }
     catch(e){
-        res.status(400).send(e)
+        console.log(e)
+        res.status(400).send(e )
     }
  
 });
